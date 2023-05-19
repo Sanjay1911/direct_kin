@@ -34,7 +34,7 @@ class RobotKinematics():
         if True: current_joint_states = list(rospy.wait_for_message("/joint_states", JointState, rospy.Duration(10)).position)
         else: current_joint_states = list(rospy.wait_for_message("/franka_state_controller/joint_states_desired", JointState, rospy.Duration(10)).position)
         #for index in [2, 5, 9]: current_joint_states.insert(index, 0)
-        self.dh_params[] = current_joint_states
+        self.dh_params[self.joint_states] = current_joint_states
 
     def calc_forward_kinematics(self):
         a_i, alpha_i, d_i, theta_i = symbols('a_i, alpha_i, d_i, theta_i')
